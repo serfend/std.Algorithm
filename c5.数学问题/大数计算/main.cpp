@@ -37,6 +37,21 @@ class BigDecimal{
 			c.value[i]=tmp%10;
 			carry=tmp/10;
 		}
+		/*if(carry!=0){
+			c.value[c.length++]=carry;
+		}*/
+		return c;
+	}
+	BigDecimal operator -(const BigDecimal tar){
+		BigDecimal c(*this);
+		int carry=0;
+		for(int i=0;i<this->length||i<tar.length;i++){
+			if(this->value[i]<tar.value[i]){
+				this->value[i+1]--;
+				this->value[i]+=10;
+			}
+			c.value[i]=this->value[i]-tar.value[i];
+		}
 		if(carry!=0){
 			c.value[c.length++]=carry;
 		}
