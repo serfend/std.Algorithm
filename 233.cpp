@@ -1,28 +1,21 @@
 #include <iostream>
-unsigned short num[23333]={1};
-int nowLen=1;
-void show(){
-	for(int i=nowLen-1;i>=0;i--)
-		printf("%d",num[i]);
+#include <queue>
+int n=0;
+struct node{
+	int value;
+	int rank;
+}num[9999];
+bool cmp(node& a,node&b){
+	return a.value-b.value;
 }
-void muti(int n){
-	int carry=0;
-	for(int i=0;i<nowLen;i++){
-		num[i]=num[i]*n+carry;
-		carry=num[i]/10;
-		num[i]%=10;
-	}
-	while(carry>0){
-		num[nowLen++]=carry%10;
-		carry/=10;
-	}
-}
+using namespace std;
 int main(){
-	int n;
-	scanf("%d",&n);
-	for(int i=n;i>0;i--){
-		muti(i);
-	}
-	show();
+	freopen("input.txt","r",stdin);
+	while(scanf("%d",&num[n].value)!=EOF){
+		num[n].rank=n;
+		n++;
+	};
+	n--;
+	sort(num,num+n,cmp);
 	return 0;
 } 
